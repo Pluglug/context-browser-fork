@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Blender
+*.blend1
+*.blend2
+*.blend@
+*.blend~*
+
+# Packaging and build output
+build/
+dist/
+*.egg-info/
+*.zip
+
+# Local environments
+.venv/
+venv/
+env/
+
+# Editor and OS files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

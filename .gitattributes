@@ -1,0 +1,26 @@
+# Normalize text files to LF in the repository.
+* text=auto eol=lf
+
+# Source and configuration files.
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.toml text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.ini text eol=lf
+*.cfg text eol=lf
+
+# Binary assets and archives.
+*.blend binary
+*.blend1 binary
+*.blend2 binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.gz binary
