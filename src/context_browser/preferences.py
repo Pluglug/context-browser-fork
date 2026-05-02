@@ -1,3 +1,5 @@
+# pyright: reportInvalidTypeForm=false
+
 import bpy
 from .addon import ADDON_ID, temp_prefs, prefs, ic
 from .utils.collection_utils import sort_collection

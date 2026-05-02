@@ -1,3 +1,5 @@
+# pyright: reportInvalidTypeForm=false
+
 import bpy
 import importlib
 import os

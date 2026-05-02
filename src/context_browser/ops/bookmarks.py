@@ -1,3 +1,5 @@
+# pyright: reportInvalidTypeForm=false
+
 import bpy
 from ..addon import prefs, temp_prefs, ic
 

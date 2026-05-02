@@ -1,3 +1,5 @@
+# pyright: reportInvalidTypeForm=false
+
 import bpy
 import types
 from traceback import print_exc
