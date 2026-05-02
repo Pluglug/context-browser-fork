@@ -1,0 +1,60 @@
+[project]
+name = "context-browser-fork"
+version = "1.4.0"
+description = "Maintenance fork of the Context Browser Blender add-on"
+readme = "README.md"
+license = { text = "GPL-3.0-or-later" }
+requires-python = ">=3.11"
+authors = [
+    { name = "roaoao" },
+    { name = "Pluglug" },
+]
+keywords = ["blender", "addon", "context-browser", "developer-tools"]
+
+[project.optional-dependencies]
+dev = [
+    "fake-bpy-module-4.5==20260128",
+    "pyright>=1.1.390",
+    "ruff>=0.8.0",
+]
+
+[tool.ruff]
+target-version = "py37"
+line-length = 100
+exclude = [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "build",
+    "dist",
+]
+
+[tool.ruff.lint]
+# Keep linting intentionally narrow while the imported source keeps its original style.
+select = [
+    "E9",    # syntax and indentation errors
+    "F821",  # undefined names
+    "F822",  # undefined names in __all__
+    "F823",  # local variable referenced before assignment
+]
+
+[tool.pyright]
+include = ["src/context_browser"]
+exclude = [
+    ".venv",
+    "__pycache__",
+    "build",
+    "dist",
+]
+pythonVersion = "3.11"
+typeCheckingMode = "basic"
+
+reportMissingTypeStubs = false
+reportUnknownArgumentType = false
+reportUnknownMemberType = false
+reportUnknownVariableType = false
+reportArgumentType = false
+reportAttributeAccessIssue = false
+reportOptionalMemberAccess = false
+reportOptionalSubscript = false
+reportGeneralTypeIssues = "warning"
