@@ -1,0 +1,103 @@
+name: Bug Report
+description: Report an issue in Context Browser
+title: "[Bug] <Short description>"
+labels: ["bug"]
+assignees:
+  - Pluglug
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to report a bug.
+        The questions below make it easier to reproduce and investigate it.
+
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: "A short explanation of what went wrong."
+      placeholder: "Example: Context Browser opens the wrong keymap item."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: "What actions trigger the issue?"
+      placeholder: |
+        1. Open Blender 4.5 LTS
+        2. Enable Context Browser
+        3. Open ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: "What did you expect to happen instead?"
+      placeholder: "The selected row should open the matching context data."
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: "What happens instead when you follow the steps?"
+      placeholder: "A different item opens / an error appears."
+    validations:
+      required: true
+
+  - type: input
+    id: blender_version
+    attributes:
+      label: Blender Version
+      placeholder: "4.5.0 LTS, 5.1.0, etc."
+    validations:
+      required: true
+
+  - type: input
+    id: context_browser_version
+    attributes:
+      label: Context Browser Version
+      placeholder: "1.4.0, commit SHA, etc."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      options:
+        - "Windows 10"
+        - "Windows 11"
+        - "macOS (Intel)"
+        - "macOS (Apple Silicon)"
+        - "Linux"
+        - "Other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: System Console Output (optional)
+      description: "If Blender printed any errors or warnings, paste them here."
+      placeholder: |
+        Python: Traceback (most recent call last):
+          File "...", line ...
+          ...
+    validations:
+      required: false
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional Notes (optional)
+      description: "Screenshots, context paths, or other useful details."
+      placeholder: "Happens only when browsing a specific context path, etc."
+    validations:
+      required: false

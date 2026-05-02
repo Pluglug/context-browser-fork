@@ -1,0 +1,65 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get version and filename from tag
+        id: version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+          BUILD_DATE=$(date -u +"%Y%m%d-%H%M%SZ")
+          echo "date=$BUILD_DATE" >> "$GITHUB_OUTPUT"
+
+          RANDOM_STR=$(
+            head -c 100 /dev/urandom |
+            base64 |
+            tr -dc 'a-zA-Z0-9' |
+            head -c 12
+          )
+          echo "random=$RANDOM_STR" >> "$GITHUB_OUTPUT"
+
+          # Example: cb1.4.0_20260502-024036Z_7Oazo5hxgfw6.zip
+          FILENAME="cb${VERSION}_${BUILD_DATE}_${RANDOM_STR}.zip"
+          echo "filename=$FILENAME" >> "$GITHUB_OUTPUT"
+
+      - name: Create add-on zip
+        run: |
+          mkdir -p build/context_browser
+
+          rsync -av \
+            --exclude='__pycache__' \
+            --exclude='*.pyc' \
+            --exclude='*.pyo' \
+            src/context_browser/ build/context_browser/
+
+          cd build
+          zip -r "../${{ steps.version.outputs.filename }}" context_browser
+          cd ..
+
+          echo "=== Zip contents ==="
+          unzip -l "${{ steps.version.outputs.filename }}"
+
+      - name: Create release draft
+        uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          name: "Context Browser Fork v${{ steps.version.outputs.version }}"
+          files: ${{ steps.version.outputs.filename }}
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
